@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Management Brief - Beauty Clinic</title>
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0;font-family:Arial,Helvetica,sans-serif;
+    background:#f8f1ec;color:#4b3b35;
+  }
+  .wrap{max-width:1050px;margin:30px auto;padding:18px}
+  .header{
+    background:#fff;border-radius:22px;padding:25px;
+    box-shadow:0 8px 25px rgba(80,50,40,.08);margin-bottom:18px;
+  }
+  h1{margin:0 0 7px;font-size:28px;color:#6d4c41}
+  .subtitle{margin:0;color:#8a7168}
+  .card{
+    background:#fff;border-radius:20px;padding:22px;margin-bottom:18px;
+    box-shadow:0 8px 25px rgba(80,50,40,.07)
+  }
+  h2{font-size:19px;margin:0 0 16px;color:#6d4c41}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  label{font-size:13px;font-weight:bold;display:block;margin-bottom:6px}
+  input,textarea{
+    width:100%;padding:11px 12px;border:1px solid #dfd0c9;
+    border-radius:11px;background:#fffaf7;color:#4b3b35;font-size:14px;
+  }
+  textarea{min-height:90px;resize:vertical}
+  .metric{
+    background:#fbf6f2;border-radius:14px;padding:16px;text-align:center;
+  }
+  .metric b{display:block;font-size:24px;color:#8b5e50;margin-top:5px}
+  .result{
+    background:#f4e7df;border-radius:15px;padding:17px;margin-top:14px;
+  }
+  .result p{margin:7px 0}
+  .status{
+    display:inline-block;padding:8px 14px;border-radius:20px;
+    font-weight:bold;background:#ead6cc;
+  }
+  button{
+    border:0;border-radius:12px;padding:12px 18px;font-weight:bold;
+    cursor:pointer;margin-right:8px;margin-top:8px;
+  }
+  .primary{background:#8b5e50;color:white}
+  .secondary{background:#eaded8;color:#5c463e}
+  .small{font-size:12px;color:#8a7168}
+  @media(max-width:700px){
+    .grid,.grid3{grid-template-columns:1fr}
+    .wrap{margin:10px auto;padding:10px}
+  }
+  @media print{
+    button{display:none}
+    body{background:white}
+    .card,.header{box-shadow:none;border:1px solid #ddd}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>Daily Management Brief</h1>
+    <p class="subtitle">Operational Report • Beauty Clinic</p>
+  </div>
+
+  <div class="card">
+    <h2>1. Informasi Laporan</h2>
+    <div class="grid">
+      <div>
+        <label>Tanggal</label>
+        <input type="date" id="tanggal">
+      </div>
+      <div>
+        <label>Nama Manager / Konsultan</label>
+        <input type="text" id="nama" placeholder="Masukkan nama">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2. Target & Omzet</h2>
+    <div class="grid3">
+      <div><label>Target Omzet (Rp)</label><input type="number" id="target" min="0" placeholder="0"></div>
+      <div><label>Realisasi Omzet (Rp)</label><input type="number" id="realisasi" min="0" placeholder="0"></div>
+      <div><label>Pasien Total</label><input type="number" id="pasien" min="0" placeholder="0"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Data Pasien</h2>
+    <div class="grid3">
+      <div><label>Pasien Baru</label><input type="number" id="baru" min="0" placeholder="0"></div>
+      <div><label>Pasien Repeat</label><input type="number" id="repeat" min="0" placeholder="0"></div>
+      <div><label>Pasien Follow Up</label><input type="number" id="follow" min="0" placeholder="0"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>4. Treatment</h2>
+    <div class="grid3">
+      <div><label>Facial</label><input type="number" id="facial" min="0" placeholder="0"></div>
+      <div><label>Laser</label><input type="number" id="laser" min="0" placeholder="0"></div>
+      <div><label>Injection</label><input type="number" id="injection" min="0" placeholder="0"></div>
+    </div>
+    <div style="margin-top:14px"><label>Other Treatment</label><input type="number" id="other" min="0" placeholder="0"></div>
+  </div>
+
+  <div class="card">
+    <h2>5. Upselling & Booking</h2>
+    <div class="grid3">
+      <div><label>Pasien Berhasil Upselling</label><input type="number" id="upsell" min="0" placeholder="0"></div>
+      <div><label>Pasien Berhasil Booking</label><input type="number" id="booking" min="0" placeholder="0"></div>
+      <div><label>Follow Up Berhasil</label><input type="number" id="fuBerhasil" min="0" placeholder="0"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>6. Catatan Operasional</h2>
+    <textarea id="catatan" placeholder="Tulis kendala, evaluasi, pasien, pelayanan, atau catatan penting hari ini..."></textarea>
+  </div>
+
+  <div class="card">
+    <h2>7. Hasil Evaluasi Otomatis</h2>
+    <div class="grid3">
+      <div class="metric">Achievement Omzet<b id="achieve">0%</b></div>
+      <div class="metric">Upselling Rate<b id="upsellRate">0%</b></div>
+      <div class="metric">Booking Rate<b id="bookingRate">0%</b></div>
+    </div>
+    <div class="grid" style="margin-top:14px">
+      <div class="metric">Rata-rata Omzet / Pasien<b id="avg">Rp 0</b></div>
+      <div class="metric">Status<b id="status">Belum dihitung</b></div>
+    </div>
+    <div class="result">
+      <p><strong>Evaluasi:</strong></p>
+      <p id="evaluasi">Silakan isi data laporan untuk melihat evaluasi.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <button class="primary" onclick="hitung()">Hitung Evaluasi</button>
+    <button class="secondary" onclick="window.print()">Print / Save PDF</button>
+    <button class="secondary" onclick="resetForm()">Reset</button>
+    <p class="small">Data dihitung langsung di browser dan tidak dikirim ke server.</p>
+  </div>
+</div>
+
+<script>
+  const ids = ["target","realisasi","pasien","baru","repeat","follow","facial","laser","injection","other","upsell","booking","fuBerhasil"];
+
+  function rupiah(n){
+    return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n||0);
+  }
+
+  function val(id){ return Number(document.getElementById(id).value) || 0; }
+
+  function hitung(){
+    const target=val("target"), realisasi=val("realisasi"), pasien=val("pasien");
+    const upsell=val("upsell"), booking=val("booking");
+
+    const achievement = target ? (realisasi/target)*100 : 0;
+    const upsellRate = pasien ? (upsell/pasien)*100 : 0;
+    const bookingRate = pasien ? (booking/pasien)*100 : 0;
+    const avg = pasien ? realisasi/pasien : 0;
+
+    document.getElementById("achieve").textContent=achievement.toFixed(1)+"%";
+    document.getElementById("upsellRate").textContent=upsellRate.toFixed(1)+"%";
+    document.getElementById("bookingRate").textContent=bookingRate.toFixed(1)+"%";
+    document.getElementById("avg").textContent=rupiah(avg);
+
+    let status="Perlu Evaluasi";
+    if(achievement>=100) status="Target Tercapai 🎉";
+    else if(achievement>=80) status="Hampir Tercapai";
+    document.getElementById("status").textContent=status;
+
+    let evaluasi="";
+    if(!target && !pasien){
+      evaluasi="Silakan isi target omzet dan data pasien terlebih dahulu.";
+    } else {
+      evaluasi="Realisasi omzet mencapai "+achievement.toFixed(1)+"% dari target. ";
+      evaluasi += "Upselling berada di "+upsellRate.toFixed(1)+"% dan booking "+bookingRate.toFixed(1)+"%. ";
+      if(achievement>=100) evaluasi += "Pertahankan pelayanan, edukasi pasien, dan follow up agar performa tetap stabil.";
+      else if(achievement>=80) evaluasi += "Perlu dimaksimalkan melalui follow up, booking treatment berikutnya, dan upselling sesuai kebutuhan pasien.";
+      else evaluasi += "Perlu evaluasi sumber omzet, repeat patient, follow up, booking, serta peluang upselling yang sesuai kebutuhan pasien.";
+    }
+    document.getElementById("evaluasi").textContent=evaluasi;
+  }
+
+  function resetForm(){
+    document.querySelectorAll("input, textarea").forEach(el=>el.value="");
+    document.getElementById("tanggal").value=new Date().toISOString().slice(0,10);
+    document.getElementById("achieve").textContent="0%";
+    document.getElementById("upsellRate").textContent="0%";
+    document.getElementById("bookingRate").textContent="0%";
+    document.getElementById("avg").textContent="Rp 0";
+    document.getElementById("status").textContent="Belum dihitung";
+    document.getElementById("evaluasi").textContent="Silakan isi data laporan untuk melihat evaluasi.";
+  }
+
+  document.getElementById("tanggal").value=new Date().toISOString().slice(0,10);
+  ids.forEach(id=>document.getElementById(id).addEventListener("input",hitung));
+</script>
+</body>
+</html>
